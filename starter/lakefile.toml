@@ -1,8 +1,8 @@
-name = "dean-challenge-starter"
-defaultTargets = ["Challenge", "Submission"]
+name = "dean-verification-starter"
+defaultTargets = ["VerificationTarget", "Proof"]
 
 [[lean_lib]]
-name = "Challenge"
+name = "VerificationTarget"
 
 [[lean_lib]]
-name = "Submission"
+name = "Proof"

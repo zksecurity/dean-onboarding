@@ -21,17 +21,17 @@ def command(args, cwd, log):
     return p.returncode, p.stdout, round(time.monotonic() - start, 3)
 
 
-spec = json.loads((ROOT / 'dean-challenge.json').read_text())
+spec = json.loads((ROOT / 'verification.json').read_text())
 if (ROOT / 'lean-toolchain').read_text().strip() != spec['lean_toolchain']:
     raise SystemExit('lean-toolchain differs from the handoff specification')
 rows = []
-with tempfile.TemporaryDirectory(prefix='dean-authoring-') as temporary:
-    for name, fixture in [('known-good', ROOT / 'Submission.lean'),
-                          ('known-bad', ROOT / 'fixtures/known-bad/Submission.lean'),
-                          ('wrong-statement', ROOT / 'fixtures/wrong-statement/Submission.lean')]:
+with tempfile.TemporaryDirectory(prefix='dean-verification-') as temporary:
+    for name, fixture in [('known-good', ROOT / 'Proof.lean'),
+                          ('known-bad', ROOT / 'fixtures/known-bad/Proof.lean'),
+                          ('wrong-statement', ROOT / 'fixtures/wrong-statement/Proof.lean')]:
         project = Path(temporary) / name
         shutil.copytree(ROOT, project, ignore=shutil.ignore_patterns('.git', '.lake', 'intake-out', '__pycache__'))
-        shutil.copyfile(fixture, project / 'Submission.lean')
+        shutil.copyfile(fixture, project / 'Proof.lean')
         build, _, build_seconds = command(['lake', 'build'], project, f'{name}-build.log')
         if build != 0:
             raise SystemExit(f'{name}: compilation failed; inspect intake-out/{name}-build.log. This is not a valid negative-control result.')

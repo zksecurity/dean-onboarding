@@ -1,8 +1,8 @@
-import Challenge
+import VerificationTarget
 
 namespace Demo
 
-theorem candidate : Claim := by
+theorem result : Claim := by
   intro n
   exact Nat.add_zero n
 

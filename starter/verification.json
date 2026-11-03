@@ -1,0 +1,73 @@
+{
+  "format": "dean-verification-intake/v1",
+  "lean_toolchain": "leanprover/lean4:v4.34.0",
+  "source_policy": {
+    "root": ".",
+    "layout": "flat",
+    "allowed_suffixes": [],
+    "allowed_files": [
+      "Proof.lean"
+    ],
+    "required_files": [
+      "Proof.lean"
+    ],
+    "max_files": 1,
+    "max_total_bytes": 1048576,
+    "max_file_bytes": 1048576,
+    "max_depth": 1
+  },
+  "requested_resources": {
+    "cpu": 4,
+    "memory_bytes": 17179869184,
+    "timeout_seconds": 1800
+  },
+  "submission_method": "queue-api",
+  "package_include": [
+    "VerificationTarget.lean",
+    "Proof.lean",
+    "lean-toolchain",
+    "lakefile.toml",
+    "checks",
+    "fixtures",
+    "tools",
+    "verification.json",
+    "README.md"
+  ],
+  "visibility": "private",
+  "project": {
+    "slug": "demo-add-zero",
+    "title": "Independent verification example",
+    "proposed_version": "demo-add-zero-v1",
+    "description": "Replace this example with the required targets of an existing Lean project."
+  },
+  "targets": [
+    {
+      "trusted_module": "VerificationTarget",
+      "declaration": "Demo.result",
+      "expected_type": "Demo.Claim",
+      "permitted_axioms": [
+        "propext",
+        "Quot.sound",
+        "Classical.choice"
+      ]
+    }
+  ],
+  "verification": {
+    "mode": "required-targets",
+    "success": "All configured targets match their required statements and permitted assumptions."
+  },
+  "controls": {
+    "known_good": {
+      "path": "Proof.lean",
+      "expected_outcome": "verified"
+    },
+    "known_bad": {
+      "path": "fixtures/known-bad/Proof.lean",
+      "expected_reason": "unpermitted axiom"
+    },
+    "wrong_statement": {
+      "path": "fixtures/wrong-statement/Proof.lean",
+      "expected_reason": "wrong target type"
+    }
+  }
+}

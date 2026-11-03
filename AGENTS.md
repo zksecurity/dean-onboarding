@@ -1,7 +1,7 @@
 # Agent entrypoint
 
-Follow CHALLENGE_AUTHORING.md for challenge authoring and proposal submission. Use starter/ in the author's own project. Preserve mathematical intent, pin source and dependencies, and test meaningful positive and negative cases.
+Use ONBOARDING.md for project verification onboarding. For Dean reviewer work use REVIEWER.md. Preserve intended mathematics, source layout and pinned dependencies. New environments are reviewed before activation.
 
-Public proposals go to this repository's issues with accessible pinned source. Private proposals use authorized email. Follow the team's answer on the same issue or private email thread. A local draft is not submission; an accepted proposal is not production activation. Proof integration uses only the Queue API.
+One onboarding channel: requester-owned private dean-onboarding-* repo and its private issue. No public proposal or email fallback. Review replies and encrypted scoped access use the same thread. Customer agents keep .dean/ local and ignored; only the public recipient is shared. No plaintext API credentials or decryption keys in GitHub, Git or transcripts.
 
-This repository contains authoring documentation and starter code only. Do not add Dean runtime internals, production credentials, unrelated private source or acceptance caches. Do not weaken a challenge's statement or assumptions to pass a test.
+This repository contains onboarding tools and documentation, not the closed-source verification runtime. Do not publish customer sources or private operator/deployment internals here. Do not execute customer scripts with operator credentials. Proof snapshots use only the Queue API after onboarding.

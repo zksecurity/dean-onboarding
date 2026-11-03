@@ -1,14 +1,9 @@
-# Queue API integration
+# Queue API verification
 
-After a proposal is reviewed and the workload is enabled, the Dean team privately supplies the API base URL, scoped access token, supported challenge/version identifiers, limits and complete request/response contract.
+After onboarding, the access bundle privately supplies the API URL, scoped token, verification configuration/version, limits and agreed request/response contract.
 
-The agent then automates this sequence:
+An agent or application uploads an exact source archive, submits a verification job, saves its ID and polls for the outcome or consumes the verdict stream. Process results durably, deduplicate repeat deliveries and acknowledge consumed verdicts. Stable submission references support retries. Results identify admitted source content and the chosen configuration version.
 
-1. Request an upload location and upload the exact source archive.
-2. Submit a verification job for an enabled challenge version.
-3. Save the returned submission identifier and poll for the result, or consume the verdict stream.
-4. Process the terminal verdict durably, deduplicate repeat deliveries and acknowledge consumed messages.
+The API's `challenge` and `challenge_version` fields select a registered verification configuration and immutable revision. They are compatibility field names; an ordinary project-verification workflow needs no competition or ranking. The enabled configuration determines which targets, definitions, dependencies and assumptions are checked. Existing projects and new environments require compatibility review before enabling submissions.
 
-A stable submission reference makes retries reproducible. The result identifies the admitted source artifact and selected verification version. Keep the uploaded bytes and their digest when recording a result.
-
-This is the proof integration route for Dean. Public challenge review happens in this repository's issues; API access credentials and private material stay in the private onboarding channel. A proposal issue is not an API registration call, and an accepted proposal does not itself enable production submissions.
+All onboarding discussion and encrypted credential handoff use the same private onboarding issue. The public documentation repository receives no customer submissions, tokens or source bundles. The Queue API is the proof-snapshot submission route after onboarding, not an unrestricted self-registration endpoint.

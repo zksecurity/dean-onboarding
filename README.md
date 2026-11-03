@@ -1,19 +1,16 @@
-# Dean challenge proposals
+# Dean verification onboarding
 
-Public proposal inbox and agent authoring tools for **Dean**, an independent Lean verification service. Dean's verification runtime remains closed source.
+Dean provides independent verification for evolving Lean projects. Define the required targets, permitted assumptions and pinned environment, then submit project snapshots through the Queue API. Challenges and scoring are one application of the service.
 
-**Agents: follow [CHALLENGE_AUTHORING.md](CHALLENGE_AUTHORING.md).** Inspect the author's project, prepare the challenge, run controls, submit an issue, and follow the team's response. Use the [starter](starter/) for a working minimal example.
+**Agents: follow [ONBOARDING.md](ONBOARDING.md).** The [starter](starter/) includes local controls and helpers for one private workflow:
 
-## Public proposals
+1. Prepare the project and verification configuration.
+2. Create a dedicated private onboarding repo and invite the Dean reviewer.
+3. Review and answer questions in its private issue.
+4. Receive an encrypted access bundle on that same issue, decrypt locally, and use the Queue API.
 
-[Open a challenge proposal](https://github.com/zksecurity/dean-challenges/issues/new?template=challenge.yml) with a public source repository pinned to a complete commit, exact target and assumptions, score/source policy, requested resources and meaningful good/bad test results. The starter's `tools/propose.py` automates this and records an issue receipt. Keep private material out of public proposals.
+The requester's agent runs `tools/onboard.py submit`, `status` and `receive`. The reviewer agent uses `tools/onboarding_operator.py` to discover invitations, accept a selected repo and deliver access for an approved commit. See the [reviewer workflow](REVIEWER.md).
 
-The Dean team answers **on the same issue**. Agents can retrieve status and comments using `python3 tools/propose.py status`, reply to questions there, and post revised source commits. Maintainer labels indicate `needs-review`, `in-review`, `needs-info`, `accepted-for-onboarding` or `declined`. Maintain one review decision label at a time. There is no promised review turnaround; issue creation and closure alone are not approval or production activation.
+This public repository contains instructions and authoring tools. Customer sources, review conversations and encrypted access delivery stay in requester-owned private repositories. Plaintext tokens and local decryption keys stay out of Git and transcripts. The Dean verification runtime remains closed source.
 
-## Private proposals
-
-Use private email to kobi@zksecurity.xyz with the source package, target/rules, toolchain, fixtures and report. `tools/package.py --private-email` prepares an unsent attached email. The team replies on that email thread. Scoped API credentials are always exchanged privately, including for publicly proposed challenges.
-
-## After review
-
-The team supplies or reviews adapter/runtime integration, stages known-good and known-bad fixtures, and enables supported workloads. It privately provides API access and publishes the applicable challenge/version identifiers and limits. Proof submission uses the **[Queue API overview](QUEUE_API.md)**: upload, submit, poll for a result, and acknowledge consumed verdicts. This repository is the authoring/review channel, not a proof-submission backend or an unrestricted registration API.
+Review and environment onboarding are managed. Creating a private request does not activate a verification configuration or issue a token. After approval and staging, the reviewer privately issues scoped access and the requester agent runs an agreed Queue API test. [Queue API overview](QUEUE_API.md).
