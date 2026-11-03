@@ -64,7 +64,7 @@ def submit(source, commit):
         with tempfile.TemporaryDirectory(prefix='dean-proposal-') as temporary:
             body_file = Path(temporary) / 'body.md'
             body_file.write_text(body)
-            url = run('gh', 'issue', 'create', '--repo', INBOX, '--title', f'Challenge proposal: {spec["challenge"]["slug"]}', '--body-file', str(body_file), '--label', 'proposal', '--label', 'needs-review')
+            url = run('gh', 'issue', 'create', '--repo', INBOX, '--title', f'Challenge proposal: {spec["challenge"]["slug"]}', '--body-file', str(body_file))
     number = issue_number(url)
     OUT.mkdir(exist_ok=True)
     receipt = {'status': 'submitted-for-review', 'issue_url': url, 'issue_number': int(number), 'source_repository': canonical, 'source_commit': commit, 'review_status': 'pending', 'credential_delivery': 'private; never in public issue'}
