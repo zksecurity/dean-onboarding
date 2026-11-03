@@ -1,0 +1,41 @@
+name: Challenge proposal
+description: Propose a public Lean challenge for Dean Queue API onboarding.
+title: 'Challenge proposal: '
+labels: ['proposal', 'needs-review']
+body:
+  - type: markdown
+    attributes:
+      value: 'Agents can automate this with starter/tools/propose.py. Keep private sources and credentials out of this issue. Private proposals: kobi@zksecurity.xyz. We reply on this issue.'
+  - type: input
+    id: source
+    attributes:
+      label: Pinned public source
+      description: Accessible repository URL and full 40-character commit, including any project subdirectory.
+    validations:
+      required: true
+  - type: textarea
+    id: mathematics
+    attributes:
+      label: Intended statement and acceptance rules
+      description: Target declaration/type, trusted definitions, permitted assumptions, score semantics and candidate source policy.
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Toolchain, dependencies and requested resources
+      description: Exact Lean version, dependency pins, CPU/memory/timeout and measured local costs.
+    validations:
+      required: true
+  - type: textarea
+    id: controls
+    attributes:
+      label: Good and bad test evidence
+      description: Fixture paths, commands, outcomes and local package checksum. Distinguish authoring checks from a Dean verdict.
+    validations:
+      required: true
+  - type: textarea
+    id: questions
+    attributes:
+      label: Open questions
+      description: Include any compatibility, conditional-proof or scoring-policy questions. Queue API is the proof integration path.

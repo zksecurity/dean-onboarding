@@ -1,0 +1,8 @@
+name = "dean-challenge-starter"
+defaultTargets = ["Challenge", "Submission"]
+
+[[lean_lib]]
+name = "Challenge"
+
+[[lean_lib]]
+name = "Submission"

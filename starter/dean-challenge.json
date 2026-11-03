@@ -1,0 +1,78 @@
+{
+  "format": "dean-challenge-intake/v1",
+  "contact": {
+    "github": "",
+    "email": ""
+  },
+  "challenge": {
+    "slug": "demo-add-zero",
+    "title": "Addition by zero (replace this example)",
+    "proposed_version": "demo-add-zero-v1",
+    "description": "Replace this toy example with your intended mathematical challenge."
+  },
+  "lean_toolchain": "leanprover/lean4:v4.34.0",
+  "target": {
+    "trusted_module": "Challenge",
+    "declaration": "Demo.candidate",
+    "expected_type": "Demo.Claim",
+    "permitted_axioms": [
+      "propext",
+      "Quot.sound",
+      "Classical.choice"
+    ]
+  },
+  "source_policy": {
+    "root": ".",
+    "layout": "flat",
+    "allowed_suffixes": [],
+    "allowed_files": [
+      "Submission.lean"
+    ],
+    "required_files": [
+      "Submission.lean"
+    ],
+    "max_files": 1,
+    "max_total_bytes": 1048576,
+    "max_file_bytes": 1048576,
+    "max_depth": 1
+  },
+  "score": {
+    "metric": "accepted",
+    "unit": "proof",
+    "direction": "maximize",
+    "scale": 1,
+    "fixed_value": 1
+  },
+  "requested_resources": {
+    "cpu": 4,
+    "memory_bytes": 17179869184,
+    "timeout_seconds": 1800
+  },
+  "canaries": {
+    "known_good": {
+      "path": "Submission.lean",
+      "expected_score": 1
+    },
+    "known_bad": {
+      "path": "fixtures/known-bad/Submission.lean",
+      "expected_reason": "unpermitted axiom"
+    },
+    "wrong_statement": {
+      "path": "fixtures/wrong-statement/Submission.lean",
+      "expected_reason": "wrong target type"
+    }
+  },
+  "submission_method": "queue-api",
+  "package_include": [
+    "Challenge.lean",
+    "Submission.lean",
+    "lean-toolchain",
+    "lakefile.toml",
+    "checks",
+    "fixtures",
+    "tools",
+    "dean-challenge.json",
+    "README.md"
+  ],
+  "visibility": "public"
+}
